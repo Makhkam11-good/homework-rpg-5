@@ -7,16 +7,19 @@ public class PoisonCoatingDecorator extends ActionDecorator {
 
     @Override
     public String getActionName() {
-        return "Venomous " +  super.getActionName();
+        // TODO: Decide how this decorator changes the visible action name.
+        return super.getActionName();
     }
 
     @Override
     public int getDamage() {
-        return super.getDamage() + 3;
+        // TODO: Add poison-related behavior on top of wrapped damage.
+        return super.getDamage();
     }
 
     @Override
     public String getEffectSummary() {
-        return super.getEffectSummary() + " + poison over time";
+        // TODO: Append or compose the poison effect description.
+        return super.getEffectSummary();
     }
 }
