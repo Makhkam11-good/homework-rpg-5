@@ -24,13 +24,10 @@ public class BossEnemy {
     }
 
     public void takeDamage(int amount) {
-        health -= amount;
-        if (health < 0) {
-            health = 0;
-        }
+        this.health = Math.max(0, this.health - amount);
     }
 
     public boolean isAlive() {
-        return health > 0;
+        return this.health > 0;
     }
 }

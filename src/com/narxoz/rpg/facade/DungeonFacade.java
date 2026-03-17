@@ -6,7 +6,7 @@ import com.narxoz.rpg.hero.HeroProfile;
 
 public class DungeonFacade {
     private final PreparationService preparationService = new PreparationService();
-    private final BattleService battleService = new BattleService();
+    private final BattleService battleService = BattleService.getInstance();
     private final RewardService rewardService = new RewardService();
 
     public DungeonFacade setRandomSeed(long seed) {
@@ -15,14 +15,9 @@ public class DungeonFacade {
     }
 
     public AdventureResult runAdventure(HeroProfile hero, BossEnemy boss, AttackAction action) {
-        // TODO: Coordinate subsystem calls in a clean order.
-        // Suggested flow:
-        // 1) preparation
-        // 2) battle
-        // 3) reward
-        AdventureResult result = battleService.battle(hero, boss, action);
         String preparationSummary = preparationService.prepare(hero, boss, action);
-        result.addLine(preparationSummary);
+        System.out.println("[Preparation]: " + preparationSummary + "\n");
+        AdventureResult result = battleService.battle(hero, boss, action);
         result.setReward(rewardService.determineReward(result));
         return result;
     }
